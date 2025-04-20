@@ -28,10 +28,9 @@ void main() {
         c.a *= ceil(mod(vCounters + dashOffset, dashArray) - (dashArray * dashRatio));
     }
 
-    // gl_FragColor = c;
-    gl_FragColor = vec4(pow(c.rgb, vec3(1.0 / 2.2)), c.a);
-
+    gl_FragColor = c;
     gl_FragColor.a *= step(vCounters, visibility);
 
     #include <fog_fragment>
+    #include <colorspace_fragment>
 }

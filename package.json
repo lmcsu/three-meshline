@@ -25,7 +25,7 @@
 		"prepare": "husky"
 	},
 	"peerDependencies": {
-		"three": ">=0.150.0"
+		"three": ">=0.154.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.25.0",
