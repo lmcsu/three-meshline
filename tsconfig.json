@@ -1,11 +1,11 @@
 {
-	"extends": "./node_modules/@lume/cli/config/ts.config.json",
-	"compilerOptions": {
-		// remove these on update to lume/cli 0.11
-		"noImplicitOverride": true,
-		"noUncheckedIndexedAccess": true,
-		"useDefineForClassFields": true,
-		"lib": ["es2022", "dom"],
-		"target": "es2022"
-	}
+    "files": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json",
+        },
+        {
+            "path": "./tsconfig.node.json",
+        },
+    ],
 }

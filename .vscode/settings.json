@@ -1,0 +1,10 @@
+{
+    "eslint.enable": true,
+    "eslint.validate": [
+        "typescript",
+    ],
+    "eslint.options": {
+        "overrideConfigFile": "./eslint.config.ts",
+    },
+    "eslint.useFlatConfig": true,
+}

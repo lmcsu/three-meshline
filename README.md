@@ -1,48 +1,10 @@
-# `@lume/three-meshline`
+# `@lmcx/three-meshline`
 
-Provides a Mesh-based replacement for `THREE.Line` from
+Provides a replacement for [@lume/three-meshline](https://github.com/lume/three-meshline) which is
+a replacement for [three.meshline](https://github.com/spite/THREE.MeshLine) which is
+a Mesh-based replacement for `THREE.Line` from
 [Three.js](http://threejs.org), allowing line thicknesses of any size
 (`THREE.Line` is limited to 1 pixel width), and other features.
-
-> **Note** This is forked from
-> [`three.meshline`](https://github.com/lume/three-meshline), as that project has
-> been dormant. The version of this starts at 2.0 because it modernizes the code
-> base in ways that make it a breaking change, and removes deprecated features.
-
-Instead of using GL_LINE, it uses a strip of triangles billboarded. Some examples:
-
-# Demos
-
-<table>
-    <tr>
-      <td align="center">
-        <a target="_blank" href="./demo/index.html"><img width="100%" src="screenshots/demo.jpg" alt="Demo"/></a><br />
-        <a target="_blank" href="./demo/index.html">Play</a>: play with the different mesh line options
-      </td>
-      <td align="center">
-        <a target="_blank" href="./demo/graph.html"><img width="100%" src="screenshots/graph.jpg" alt="Graph"/></a><br />
-        <a target="_blank" href="./demo/graph.html">Graph</a>: example of using `MeshLine` to plot graphs
-      </td>
-      <td align="center">
-        <a target="_blank" href="./demo/spinner.html"><img width="100%" src="screenshots/spinner.jpg" alt="Spinner"/></a><br />
-        <a target="_blank" href="./demo/spinner.html">Spinner</a>: example of dynamic `MeshLine` with texture
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <a target="_blank" href="./demo/svg.html"><img width="100%" src="screenshots/svg.jpg" alt="SVG"/></a><br />
-        <a target="_blank" href="./demo/svg.html">SVG</a>: example of `MeshLine` rendering SVG Paths
-      </td>
-      <td align="center">
-        <a target="_blank" href="./demo/shape.html"><img width="100%" src="screenshots/shape.jpg" alt="Shape"/></a><br />
-        <a target="_blank" href="./demo/shape.html">Shape</a>: example of `MeshLine` created from an OBJ file
-      </td>
-      <td align="center">
-        <a target="_blank" href="./demo/birds.html"><img width="100%" src="screenshots/birds.jpg" alt="Birds"/></a><br />
-        <a target="_blank" href="./demo/birds.html">Birds</a>: example of `MeshLine.advance()` by @caramelcode (Jared Sprague) and @mwcz (Michael Clayton)
-      </td>
-    </tr>
-</table>
 
 # How to use
 
@@ -54,45 +16,17 @@ Instead of using GL_LINE, it uses a strip of triangles billboarded. Some example
 
 ## Install
 
-### With self-hosted dependencies installed locally:
-
-First install `@lume/three-meshline`:
+First install `@lmcx/three-meshline`:
 
 ```
-npm i @lume/three-meshline
-```
-
-Add the importmap to your HTML if you are using native [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) (if you have a build step handling your modules, you'd skip this):
-
-```html
-<script src="/node_modules/@lume/three-meshline/importmap.js"></script>
-```
-
-If your browser doesn't support
-[importmaps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap)
-natively yet, you can load an importmap polyfill then embed the
-importmap manually in your HTML like so:
-
-```html
-<script defer src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-<script src="/node_modules/@lume/three-meshline/importmap.js"></script>
+pnpm add @lmcx/three-meshline
 ```
 
 Finally import APIs into your JavaScript code:
 
 ```js
-import {MeshLine, MeshLineGeometry, MeshLineMaterial} from '@lume/three-meshline'
+import { MeshLine, MeshLineGeometry, MeshLineMaterial } from '@lmcx/three-meshline'
 ```
-
-<!--
-### _Without_ self-hosted dependencies, f.e. from CDN:
-
-Alternatively, use an importmap from CDN
-F.e.
-```html
-<script src="https://unpkg.com/@lume/three-meshline/importmap.js"></script>
-```
--->
 
 ### Create an array of 3D coordinates
 
@@ -193,75 +127,3 @@ const raycaster = new THREE.Raycaster()
 // Use raycaster as usual:
 raycaster.intersectObject(line)
 ```
-
-# Declarative use
-
-## react-three-fiber
-
-`MeshLine` can be used declaritively. This is how it would look like in
-[react-three-fiber](https://github.com/drcmda/react-three-fiber). You can try it
-live
-[here](https://codesandbox.io/s/react-three-fiber-three.meshline-example-vl221).
-
-<p align="center">
-	<a target="_blank" href="https://codesandbox.io/s/react-three-fiber-threejs-meshline-example-vl221"><img width="49%" src="https://imgur.com/mZikTAH.gif" alt="react-three-fiber confetti" /></a>
-	<a target="_blank" href="https://codesandbox.io/s/threejs-meshline-custom-spring-3-ypkxx"><img width="49%" src="https://imgur.com/g8ts0vJ.gif" alt="react-three-fiber sine wave" /></a>
-</p>
-
-```jsx
-import {extend, Canvas} from 'react-three-fiber'
-import {MeshLine, MeshLineMaterial, MeshLineRaycast} from '@lume/three-meshline'
-
-extend({MeshLine, MeshLineGeometry, MeshLineMaterial})
-
-function Line({points, width, color}) {
-	return (
-		<Canvas>
-			<meshLine>
-				<meshLineGeometry attach="geometry" points={points} />
-				<meshLineMaterial
-					attach="material"
-					transparent
-					depthTest={false}
-					lineWidth={width}
-					color={color}
-					dashArray={0.05}
-					dashRatio={0.95}
-				/>
-			</meshLine>
-		</Canvas>
-	)
-}
-```
-
-Dynamic line widths can be set along each point using the `widthCallback` prop.
-
-```jsx
-<meshLineGeometry attach="geometry" points={points} widthCallback={pointWidth => pointWidth * Math.random()} />
-```
-
-# TODO
-
-- Better miters
-- Faster setPoints() method
-- Size attenuation when using OrthographicCamera
-- Support for vertex colors (`geometry.vertexColors`)
-- global script for people still using global script tags for a global THREE variable
-
-# Support
-
-Tested successfully on
-
-- Chrome OSX, Windows, Android
-- Firefox OSX, Windows, Anroid
-- Safari OSX, iOS
-
-# References
-
-- [Drawing lines is hard](http://mattdesl.svbtle.com/drawing-lines-is-hard)
-- [WebGL rendering of solid trails](http://codeflow.org/entries/2012/aug/05/webgl-rendering-of-solid-trails/)
-- [Drawing Antialiased Lines with OpenGL](https://www.mapbox.com/blog/drawing-antialiased-lines/)
-
-# License
-
-MIT licensed

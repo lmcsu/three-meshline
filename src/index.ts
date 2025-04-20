@@ -1,5 +1,3 @@
-export * from './MeshLineGeometry.js'
-export * from './MeshLineMaterial.js'
-export * from './MeshLine.js'
-
-export const version = '4.0.5'
+export * from './mesh-line';
+export * from './mesh-line-geometry';
+export * from './mesh-line-material';
