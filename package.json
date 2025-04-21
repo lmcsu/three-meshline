@@ -1,6 +1,6 @@
 {
 	"name": "@lmcx/three-meshline",
-	"version": "5.0.2",
+	"version": "5.0.3",
 	"description": "Mesh-based replacement for THREE.Line",
 	"license": "MIT",
 	"type": "module",
