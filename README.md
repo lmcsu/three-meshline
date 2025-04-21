@@ -6,6 +6,17 @@ a Mesh-based replacement for `THREE.Line` from
 [Three.js](http://threejs.org), allowing line thicknesses of any size
 (`THREE.Line` is limited to 1 pixel width), and other features.
 
+# Why did I fork it?
+
+- Fixed color issues with recent Three.js versions
+- Fixed TypeScript issues and improved TypeScript support
+- Switched to modern Vite-based build
+
+# Why not just use the "meshline" package?
+
+- It's not a true replacement for the original packages
+- It has breaking changes, unstable behavior, and incompatibilities
+
 # How to use
 
 - Include script
